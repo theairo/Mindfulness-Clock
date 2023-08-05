@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from "react"
-
 export default function Home() {
     const [seconds, setSeconds] = useState(1800)
     const [stop, setStop] = useState(false)
