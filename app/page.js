@@ -53,6 +53,9 @@ export default function Home() {
     }
 
     function newCycle() {
+        if (inputValue1==='' || inputValue2==='' || inputValue3==='' || inputValue4==='') {
+            return;
+        }
         setSettings(false)
         setSeconds(parseInt(inputValue1) * 600 +
         parseInt(inputValue2) * 60 +
@@ -60,16 +63,49 @@ export default function Home() {
         parseInt(inputValue4))
     }
 
+    function handleInput1(e) {
+        if (e.target.value!=='') {
+            setInputValue1(Math.max(Math.min(5,e.target.value),0))
+        }
+        else {
+            setInputValue1(e.target.value);
+        }
+    }
+    function handleInput2(e) {
+        if (e.target.value!=='') {
+            setInputValue2(Math.max(Math.min(9,e.target.value),0))
+        }
+        else {
+            setInputValue2(e.target.value);
+        }
+    }
+    function handleInput3(e) {
+        if (e.target.value!=='') {
+            setInputValue3(Math.max(Math.min(5,e.target.value),0))
+        }
+        else {
+            setInputValue3(e.target.value);
+        }
+    }
+    function handleInput4(e) {
+        if (e.target.value!=='') {
+            setInputValue4(Math.max(Math.min(9,e.target.value),0))
+        }
+        else {
+            setInputValue4(e.target.value);
+        }
+    }
+
     return (
         <div className='flex items-center flex-col'>
             <div className='font-medium text-4xl mt-16 mb-10'>Mindfulness Clock</div>
             <div className={`font-medium text-8xl mb-6 ${settings && 'hidden'} ${!stop && !flaw ? 'text-black' : 'text-gray-600'}`}>{Math.floor(seconds/60)%60<10 ? `0${Math.floor(seconds/60) % 60}` : Math.floor(seconds/60)%60}:{seconds%60<10 ? `0${seconds % 60}` : seconds%60}</div>
             <div className={`flex items-center font-medium text-8xl mb-6  ${!settings && 'hidden'}`}>
-                <input type="number" onInput={(e) => setInputValue1(Math.max(Math.min(5,e.target.value),0))} value={inputValue1} className="appearance-none w-20 border-2 mr-2 rounded-xl"/>
-                <input type="number" onInput={(e) => setInputValue2(Math.max(Math.min(9,e.target.value),0))} value={inputValue2} className="w-20 border-2 mr-4 rounded-xl"/>
+                <input onFocus={() => setInputValue1('')} type="number" onInput={(e) => handleInput1(e)} value={inputValue1} className="appearance-none w-20 border-2 mr-2 rounded-xl"/>
+                <input onFocus={() => setInputValue2('')} type="number" onInput={(e) => handleInput2(e)} value={inputValue2} className="w-20 border-2 mr-4 rounded-xl"/>
                 : 
-                <input type="number" onInput={(e) => setInputValue3(Math.max(Math.min(5,e.target.value),0))} value={inputValue3} className="w-20 border-2 ml-4 mr-2 rounded-xl"/>
-                <input type="number" onInput={(e) => setInputValue4(Math.max(Math.min(9,e.target.value),0))} value={inputValue4} className="w-20 border-2 mr-2 rounded-xl"/>
+                <input onFocus={() => setInputValue3('')} type="number" onInput={(e) => handleInput3(e)} value={inputValue3} className="w-20 border-2 ml-4 mr-2 rounded-xl"/>
+                <input onFocus={() => setInputValue4('')} type="number" onInput={(e) => handleInput4(e)} value={inputValue4} className="w-20 border-2 mr-2 rounded-xl"/>
             </div>
             <button onClick={newCycle}className={`text-lg font-medium  w-24 h-24 rounded-full bg-lime-500 cursor-pointer hover:bg-lime-600 active:bg-lime-700 ${!settings && 'hidden'}`}>Confirm</button>
             <div className={`font-medium text-xl mb-16 text-gray-600  ${!stop && 'opacity-0'}`}>The clock is stopped</div>
