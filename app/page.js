@@ -66,10 +66,10 @@ export default function Home() {
             <div className={`font-medium text-8xl mb-6 ${settings && 'hidden'} ${!stop && !flaw ? 'text-black' : 'text-gray-600'}`}>{Math.floor(seconds/60)%60<10 ? `0${Math.floor(seconds/60) % 60}` : Math.floor(seconds/60)%60}:{seconds%60<10 ? `0${seconds % 60}` : seconds%60}</div>
             <div className={`flex items-center font-medium text-8xl mb-6  ${!settings && 'hidden'}`}>
                 <input type="number" onInput={(e) => setInputValue1(Math.max(Math.min(5,e.target.value),0))} value={inputValue1} className="appearance-none w-20 border-2 mr-2 rounded-xl"/>
-                <input type="number" onInput={(e) => setInputValue2(Math.max(Math.min(5,e.target.value),0))} value={inputValue2} className="w-20 border-2 mr-4 rounded-xl"/>
+                <input type="number" onInput={(e) => setInputValue2(Math.max(Math.min(9,e.target.value),0))} value={inputValue2} className="w-20 border-2 mr-4 rounded-xl"/>
                 : 
                 <input type="number" onInput={(e) => setInputValue3(Math.max(Math.min(5,e.target.value),0))} value={inputValue3} className="w-20 border-2 ml-4 mr-2 rounded-xl"/>
-                <input type="number" onInput={(e) => setInputValue4(Math.max(Math.min(5,e.target.value),0))} value={inputValue4} className="w-20 border-2 mr-2 rounded-xl"/>
+                <input type="number" onInput={(e) => setInputValue4(Math.max(Math.min(9,e.target.value),0))} value={inputValue4} className="w-20 border-2 mr-2 rounded-xl"/>
             </div>
             <button onClick={newCycle}className={`text-lg font-medium  w-24 h-24 rounded-full bg-lime-500 cursor-pointer hover:bg-lime-600 active:bg-lime-700 ${!settings && 'hidden'}`}>Confirm</button>
             <div className={`font-medium text-xl mb-16 text-gray-600  ${!stop && 'opacity-0'}`}>The clock is stopped</div>
