@@ -1,6 +1,9 @@
 'use client'
 
 import { useEffect, useState } from "react"
+
+
+
 export default function Home() {
     const [seconds, setSeconds] = useState(1800)
     const [stop, setStop] = useState(false)
@@ -13,7 +16,8 @@ export default function Home() {
     const [inputValue2, setInputValue2] = useState(0);
     const [inputValue3, setInputValue3] = useState(0);
     const [inputValue4, setInputValue4] = useState(0);
-    
+
+
     useEffect(() => {
         if (seconds <= 0 || stop) {
           return;
@@ -196,17 +200,17 @@ export default function Home() {
         setSettings(true);
     }
 
-    function save() {
-        localStorage.setItem('data', JSON.stringify(updatedData));
-    }
+    useEffect(() => {
+        const storedArray = localStorage.getItem('data');
+        if (storedArray) {
+          setData(JSON.parse(storedArray));
+        }
+      }, []);
+
 
     useEffect(() => {
-        const savedDataJSON = localStorage.getItem('data');
-        if (savedDataJSON) {
-            const savedData = JSON.parse(savedDataJSON);
-            setData(savedData);
-        }
-    }, []);
+        localStorage.setItem('data', JSON.stringify(data));
+      }, [data]);
 
     
     function flowFunction() {
@@ -255,6 +259,8 @@ export default function Home() {
 
     return (
         <div className='flex items-center flex-col'>
+
+
             <div className='font-medium text-4xl mt-16'>Mindfulness Clock</div>
             <div className={`mt-10 font-medium text-8xl mb-6 ${!timer && 'hidden'} ${!stop && !flaw ? 'text-black' : 'text-gray-600'}`}>{Math.floor(seconds/60)%60<10 ? `0${Math.floor(seconds/60) % 60}` : Math.floor(seconds/60)%60}:{seconds%60<10 ? `0${seconds % 60}` : seconds%60}</div>
             <div className={`mt-10 flex items-center font-medium text-8xl mb-6  ${!settings && 'hidden'}`}>
