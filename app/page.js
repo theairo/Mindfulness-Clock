@@ -290,7 +290,7 @@ export default function Home() {
                                             <div className="mx-2"><span className="font-bold">Date:</span> {item.date}</div>
                                             <div className="mx-2"><span className="font-bold">Time:</span> {item.time}</div>
                                             <div className="mx-2"><span className="font-bold">Flaws:</span> {item.flaws}</div>
-                                            <div className="mx-2"><span className="font-bold">Score:</span> {item.time/(item.flaws+1)}</div>
+                                            <div className="mx-2"><span className="font-bold">Score:</span> {Math.floor(10*item.time/(item.flaws+1))/10}</div>
                                         </div>
                                     </div>
                                 )
